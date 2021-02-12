@@ -30,27 +30,30 @@ import java.util.Arrays;
 class L16 {
     public int threeSumClosest(int[] nums, int target) {
         if(nums == null || nums.length < 3) return 0;
-        int res = Integer.MAX_VALUE;
+        // 先排序
         Arrays.sort(nums);
+        int res = nums[0] + nums[1] + nums[2];
+        int len = nums.length;
         // loop + 2 pointers
-        int l=0, r=nums.length-1;
-        for(int i=0; i<nums.length; i++) {
-            if(i>0 && nums[i] == nums[i-1]) continue;
-            l = i+1;
-            int sum = nums[i] + nums[l] + nums[r];
+        for(int i=0; i<len-2; i++) {
+            int l = i+1;
+            int r = len-1;
             while(l < r){
-                if (sum == target) return sum;
-
-                else if(sum > target) {
-                    while (nums[i] + nums[l] + nums[r] > target){
-                        l++;
-                    }
+                int sum = nums[i] + nums[l] + nums[r];// -3
+                if(Math.abs(target-sum) < Math.abs(target-res)) res = sum;
+                if(sum > target) {
+                    r--;
+                    // 解决nums[r]重复
+                    while(l < r && nums[r] == nums[r+1]) r--;
                 }
-                else if(sum < target){
-                    res = Math.min(res, nums[i] + nums[l] + nums[r]);
+                else {
                     l++;
+                    // 解决nums[l]重复
+                    while(l < r && nums[l] == nums[l-1]) l++;
                 }
             }
+            // 解决nums[i]重复
+            while(i<len-2 && nums[i] == nums[i+1]) i++;
         }
         return res;
     }
