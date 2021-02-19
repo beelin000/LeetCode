@@ -12,7 +12,9 @@ import java.util.List;
 public class L119 {
     public List<Integer> getRow(int k) {
         List<Integer> res = new ArrayList<>();
-        if(k < 0) return res;
+        if(k < 0) {
+            return res;
+        }
 
         // dp: row[k-1] ==> row[k]
         int[] cur = new int[]{1};
@@ -25,7 +27,9 @@ public class L119 {
             }
             cur = newRow;
         }
-        for(int i:cur) res.add(i);
+        for(int i:cur) {
+            res.add(i);
+        }
         return res;
     }
 }

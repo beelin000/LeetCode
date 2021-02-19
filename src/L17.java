@@ -41,10 +41,11 @@
 
 import java.util.List;
 
-//leetcode submit region begin(Prohibit modification and deletion)
+/**
+ * 手机字母组合
+ */
 class L17 {
     public List<String> letterCombinations(String digits) {
         return null;
     }
 }
-//leetcode submit region end(Prohibit modification and deletion)
