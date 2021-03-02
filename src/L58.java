@@ -36,8 +36,10 @@ class L58 {
         if(s==null || s.length() == 0) {
             return 0;
         }
-        String[] strings = s.split(String.valueOf(' '));
-        return strings.length > 0 ? strings[strings.length-1].length() : 0;
+        s.trim();
+        int start = s.lastIndexOf(' ');
+
+        return start == -1 ? s.length() : s.length()-start-1;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
