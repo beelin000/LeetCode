@@ -33,10 +33,10 @@
 //leetcode submit region begin(Prohibit modification and deletion)
 class L58 {
     public int lengthOfLastWord(String s) {
-        if(s==null || s.length() == 0) {
+        if(s == null || s.length() == 0) {
             return 0;
         }
-        s.trim();
+        s = s.trim();
         int start = s.lastIndexOf(' ');
 
         return start == -1 ? s.length() : s.length()-start-1;
