@@ -53,28 +53,43 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class L849 {
-    public int maxDistToClosest(int[] seats) {
+    public static int maxDistToClosest(int[] seats) {
         if(seats == null || seats.length < 2) {
             return 0;
         }
 
         // find the max gap
         int res = 0;
-        int left = 0;
-        int right = 0;
-        // find 1st occupied seat
-        // then fisrt gap len = right - left
-        while(left < seats.length) {
-            if(seats[left] == 1) {
-                res = left - right;
-                break;
+        int slow = 0;
+
+        // starting gap --> [***1....]
+        for(int i=0;i<seats.length; i++) {
+            if(seats[i] == 1) break;
+            else slow++;
+        }
+        res = slow;
+
+
+        // gaps between 1s --> [...1***1...]
+        for(int i=slow+1; i<seats.length; i++) {
+            if(seats[i] == 1) {
+                res = Math.max((i - slow) / 2, res);
+                slow = i;
             }
-            left++;
+
         }
 
-        // find max gap between 1s
+        // ending gap --> [...1***]
+        res = Math.max(seats.length-1 - slow, res);
 
-
+        return res;
     }
+
+    public static void main(String[] args) {
+        int[] seats = new int[]{1,0,0,0,1,0,1};
+
+        System.out.println(maxDistToClosest(seats));
+    }
+
 }
 //leetcode submit region end(Prohibit modification and deletion)
