@@ -52,29 +52,28 @@
  */
 class L19 {
     public ListNode removeNthFromEnd(ListNode head, int n) {
-        if (head == null) {
-            return new ListNode(0);
+        if(head == null || n <= 0) {
+            return head;
         }
-
-        // 2 pointer, fast and slow
         ListNode dummy = new ListNode();
-        ListNode fast = dummy;
-        ListNode slow = dummy;
         dummy.next = head;
-        ListNode target = null;
-        // first, let fast move n-1 steps
+        ListNode l = dummy;
+        ListNode r = dummy;
+
+        // r moves n steps
         for(int i=0; i<n; i++) {
-            fast = fast.next;
-        }
-        // second, let slow and fast move till fast.next == null
-        // then slow.next would be the target node we want to remove
-        while(fast.next != null) {
-            slow = slow.next;
-            fast = fast.next;
+            r = r.next;
         }
 
-        target = slow.next;
-        slow.next = target.next;
+        // l & r moves till r.next == null
+        for(; r.next != null;) {
+            r = r.next;
+            l = l.next;
+        }
+
+        // remove left.next, left.next = left.next.next
+        l.next = l.next.next;
+
         return dummy.next;
     }
 }

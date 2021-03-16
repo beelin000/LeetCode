@@ -16,14 +16,15 @@
 public class L485 {
 
     public static int findMaxConsecutiveOnes(int[] nums) {
-        if(nums == null || nums.length == 0) return 0;
+        if(nums == null || nums.length == 0) {
+            return 0;
+        }
 
         int res = 0;
 
         // sliding window
         for(int l=0; l<nums.length; l++){
-            if(nums[l] == 0) continue;
-            else{
+            if(nums[l] != 0) {
                 int count = 0;
                 int r = l;
                 while(r < nums.length && nums[r] == 1) {
@@ -38,8 +39,8 @@ public class L485 {
     }
 
     public static void main(String[] args){
-//        int[] arr = new int[]{1,1,0,1,1,1,0,0,1,0,1,1};
-        int[] arr = new int[]{0};
+        int[] arr = new int[]{1,1,0,1,1,1,0,0,1,0,1,1};
+//        int[] arr = new int[]{0};
         System.out.println(findMaxConsecutiveOnes(arr));
     }
 }
