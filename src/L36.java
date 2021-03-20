@@ -79,22 +79,23 @@ class L36 {
             blks[i] = new HashSet<>();
         }
 
-        for (int i=0; i < 10; i++) {
-            for (int j=0; j<10; j++) {
+        for (int i=0; i<9; i++) {
+            for (int j=0; j<9; j++) {
                 char c = board[i][j];
                 if (c == '.') {
                     continue;
                 }
 
-                int blk_rowIdx = (i / 3);
-                int blk_colIdx = (j / 3);
-                int box = blk_rowIdx * 3 + blk_colIdx;
-                if(rows[i].contains(c) || cols[j].contains(c) || blks[box].contains(c)) {
+                int boxIdx = (i / 3) * 3 + (j / 3);
+
+                if(rows[i].contains(c)
+                        || cols[j].contains(c)
+                        || blks[boxIdx].contains(c)) {
                     return false;
                 }
                 rows[i].add(c);
                 cols[j].add(c);
-                blks[box].add(c);
+                blks[boxIdx].add(c);
             }
         }
         return true;
