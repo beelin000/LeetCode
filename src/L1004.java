@@ -47,6 +47,7 @@ class L1004 {
         }
 
 
+        int res=0;
         return res;
     }
 }
