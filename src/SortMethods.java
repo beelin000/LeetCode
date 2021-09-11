@@ -3,18 +3,19 @@ public class SortMethods {
         if (nums == null || nums.length == 0) {
             return -1;
         }
-        int low = 0;
-        int high = nums.length-1;
-        while (low <= high) {
-            int mid = low + (high - low) / 2;
-            if(nums[mid] < target) {
-                low = mid+1;
-            }
-            else {
-                high = mid-1;
+        int len = nums.length;
+        int l = 0;
+        int r = len-1;
+
+        while (l < r) {
+            int mid = l + (r-l)/2;
+            if (nums[mid] < target) {
+                l = mid+1;
+            } else {
+                r = mid;
             }
         }
-        return low;
+        return nums[l] == target ? l : -1;
     }
 
     public static void main(String[] args) {
